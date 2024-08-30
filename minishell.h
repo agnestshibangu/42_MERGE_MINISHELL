@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/29 16:38:29 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:21:05 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void	signal_handler(void);
 void	new_routine(int signal);
 void	heredoc_signal(void);
 void	heredoc_signal_handler(int signal);
+void	routine_child(int signal);
 
 // -------------------------------------- FREE --------------------------------
 // free.c
@@ -198,14 +199,9 @@ int ft_update_shell_level(t_data *data);
 
 int check_is_builtin(t_exec_node *exec_node);
 void 	is_builtin(t_exec_node *exec_node, t_data *data);
-//int 	is_builtin(t_exec_node *exec_node, t_data *data);
-// void    run_exec_node(t_node *node, t_data *data);
 void	run_exec(t_exec_node *exec_node, t_data *data);
 void    fill_struct(char *command, t_exec_node *exec_node);
 void    run(t_node *node, t_data *data);
-void    dup_right(int *fd);
-void    dup_left(int *fd);
-// void    run_exec(char *command, t_data *data);
 void run_exec_node(t_node *node, t_data *data);
 
 // ------------------------------------- PIPEX ----------------------------------
@@ -226,14 +222,18 @@ void	reopen_stdin_stdout(int fd);
 void    run_heredoc(t_redir_node *redir_node);
 void    ft_heredoc(t_redir_node *redir_node);
 void	run_redir_node(t_node *node, t_data *data);
-void	handle_line(char *line, int file);
 int 	handle_close(int fd);
 
 // ----------------------------------- RUN UTILS --------------------------------
 
-int	is_line_delimiter(char *line, t_redir_node *redir_node);
+int		is_line_delimiter(char *line, t_redir_node *redir_node);
 void	handle_line(char *line, int file);
-void    fill_struct(char *command, t_exec_node *exec_node);
+// void    fill_struct(char *command, t_exec_node *exec_node);
+void	fork_before_exec(t_node *node, t_data *data);
+void    before_run(t_node *node, t_data *data);
+void    run(t_node *node, t_data *data);
+void    dup_right(int *fd);
+void    dup_left(int *fd);
 
 // ------------------------------------------------------------------------------
 

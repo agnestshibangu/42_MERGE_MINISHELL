@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:28 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/29 11:25:36 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:58:40 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,15 @@ void	heredoc_signal_handler(int signal)
 		close(STDIN_FILENO);
 		g_status = 130;
 		exit (g_status);
+	}
+}
+
+
+void	routine_child(int signal)
+{
+	if (signal == SIGINT)
+	{
+		printf("\n");
+		g_status = 130;
 	}
 }

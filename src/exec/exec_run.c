@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/08/29 15:05:58 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:34:54 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void run_path(char **argv, char **path)
 {
-    // Check if the command is a full path and is executable
     if (access(argv[0], F_OK | X_OK) == 0)
-    {
-        *path = argv[0];  // If the command is a valid path, use it directly
-    } 
+        *path = argv[0];  // If the command is a valid path, use it directly 
     else 
         my_free_tab(argv);
 }
@@ -34,45 +31,25 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
 {
 	char	*path;
 	char	**argv;
-    pid_t	pid = fork();
+    
+    printf("je suis dns run exec");
 
     path = NULL;
-
-    if (pid == -1) {
-        perror("error: failed to fork");
-        return;
-    } 
-    else if (pid == 0) {  // Child process
-        argv = exec_node->args;  // Utiliser directement les arguments du noeud
-        if (!argv || !argv[0])
-            exit(EXIT_FAILURE);
-        if (strchr(argv[0], '/') != NULL) // runner un  
-            run_path(argv, &path);
-        else
-            run_command(&path, argv, data);
-        //printf("Executing: %s\n", path);
-        if (execve(path, argv, data->env_vars) == -1) {
-            perror("execve failed");
-            if (path != argv[0]) {
-                free(path); 
-            }
-            my_free_tab(argv);
+    argv = exec_node->args;
+    if (!argv || !argv[0])
+        exit(EXIT_FAILURE);
+    if (strchr(argv[0], '/') != NULL)  
+        run_path(argv, &path);
+    else
+        run_command(&path, argv, data);
+    if (execve(path, argv, data->env_vars) == -1) {
+        perror("execve failed");
+        if (path != argv[0]) {
+            free(path); 
         }
-    } 
-    else {
-        int status;
-        waitpid(pid, &status, 0);  // Attend que l'enfant se termine
+        my_free_tab(argv);
     }
 }
-
-// int check_is_builtin(t_exec_node *exec_node)
-// {
-//     if (strcmp(exec_node->args[0], "echo") == 0 || strcmp(exec_node->args[0], "blabla") == 0 )
-//         return 1; // C'est un builtin
-//     else    
-//         return 0; // Ce n'est pas un builtin
-// }
-
 
 int check_is_builtin(t_exec_node *exec_node) 
 {
@@ -84,12 +61,13 @@ int check_is_builtin(t_exec_node *exec_node)
     };
     num_builtins = sizeof(builtins) / sizeof(builtins[0]);
     i = 0;
-    while (i < num_builtins) {
+    while (i < num_builtins)
+    {
         if (strcmp(exec_node->args[0], builtins[i]) == 0)
             return (1);
         i++;
     }
-    return (0); // It is not a built-in command
+    return (0);
 }
 
 void run_exec_node(t_node *node, t_data *data)
@@ -107,21 +85,3 @@ void run_exec_node(t_node *node, t_data *data)
 }
 
 
-// void    run_exec_node(t_node *node, t_data *data)
-// {
-//     // char *every_path;
-
-//     t_exec_node *exec_node = (t_exec_node *)node;
-
-//     if (exec_node->type = "builtin")
-//     {
-//         // printf("THIS IS A BUILTIN : %s\n", exec_node->command);
-//         run_builtin(exec_node->command, data);
-//     }
-//     else if (exec_node->is_builtin == false)
-//     {
-//         // printf("THIS IS NOT A BUILTIN : %s\n", exec_node->command);
-//         run_exec(exec_node->command, data);
-//         //every_path = get_every_path(tabenv->env_vars, exec_node->command);
-//     }
-// }

@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:36 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/29 14:06:22 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:28:33 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void 	show_prompt(t_data *data)
 		{
 			add_history(input);
             final_node = starting_tree(input, data);
-			run_exec_node(final_node, data);
-            printf("\n%d\n", final_node->type);
+			//run(final_node, data);
+			// run_exec_node(final_node, data);
+            before_run(final_node, data);
 		} 
 	}
 }

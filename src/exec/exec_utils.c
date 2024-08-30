@@ -6,42 +6,11 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 23:27:52 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:32:40 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-char 	*isolating_first_argument(char *str)
-{
-	char *name = NULL;
-    int i;
-    int y;
-    int name_len;
-
-    i = 0;
-    y = 0;
-    name_len = 0;
-
-    // isolating argument
-    while (str[i] != ' ')
-        i++;
-    i = i + 1;
-    
-  
-    while (str[i + name_len])
-        name_len++;
-
-    name = (char *)malloc(sizeof(char) * (name_len + 1));
-    if (!name)
-        printf("Memory allocation error\n");
-    while (str[i])
-	{
-		name[y++] = str[i++];
-	}
-	return (name);
-}
-
 
 int	ft_fork(void)
 {
@@ -55,25 +24,47 @@ int	ft_fork(void)
     }
 	return (pid);
 }
+void	fork_before_exec(t_node *node, t_data *data)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = 0;
+	pid = ft_fork();
+	signal(SIGINT, routine_child);
+	if (pid == 0)
+		run(node, data);
+	else if (pid > 0)
+	{
+		while (waitpid(pid, &status, 0) == -1)
+			;
+		if (WIFEXITED(status))
+			g_status = WEXITSTATUS(status);
+	}
+}
+
+void    before_run(t_node *node, t_data *data)
+{
+	/* if (check_is_builtin((exec_node *)node) && data->nbr_cmd == 1)
+        run_exec_node(node, data);	
+	else */
+		fork_before_exec(node, data);
+}
 
 void    run(t_node *node, t_data *data)
 {
-    // run_exec_node(node, tabenv);
-    // EXEC
-    if (node->type == EXEC)
-        run_exec_node(node, data);
-    // PIPE
+	if (node->type == EXEC)
+		run_exec_node(node, data);
     else if (node->type == PIPE)
-        run_pipe_node(node, data);
-    // REDIR
+		run_pipe_node(node, data);
     else if (node->type == REDIR)
         run_redir_node(node, data);
 }
 
 void    dup_right(int *fd)
 {
-    close(fd[1]); // Close the write end of the pipe in the right process
-    dup2(fd[0], 0); // Redirect stdin to the read end of the pipe
+    close(fd[1]);
+    dup2(fd[0], 0);
     close(fd[0]);
 }
 
@@ -91,12 +82,12 @@ int	is_line_delimiter(char *line, t_redir_node *redir_node)
 
 	if (!line)
 	{
-		printf("Debug: line is NULL\n");
+		// printf("Debug: line is NULL\n");
 		return (0);
 	}
 	if (*line == '\0')
 	{
-		printf("Debug: line is empty\n");
+		// printf("Debug: line is empty\n");
 		return (0);
 	}
 	line_len = ft_strlen(line);
