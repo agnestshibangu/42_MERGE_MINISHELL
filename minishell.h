@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 15:21:05 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 23:23:57 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_data
 	int		nbr_cmd;
 	char	**env_vars;
 	char	*start_input;
+	int		stdin_cpy;
+	int		stdout_cpy;
 }				t_data;
 
 
@@ -147,9 +149,8 @@ int		check_next_arg(char *start_scan, char *end_input);
 // ----------------------------------- INIT -----------------------------------
 // init.c
 int init_env_tab(t_data *data, char **envp);
-int copy_env_tab(t_data *data, char **envp);
-//int		init_env_tab(t_tabenv *tabenv, char **envp);
-// int		init_exec_node(t_exec_node *exec_node, char **av, int ac);
+int copy_env_tab(t_data *data);
+void	handle_in_out(t_data *data);
 int		init_exec_node(t_exec_node *exec_node, char *command);
 
 // --------------------------------- SIGNALS -----------------------------------
@@ -158,6 +159,7 @@ void	signal_handler(void);
 void	new_routine(int signal);
 void	heredoc_signal(void);
 void	heredoc_signal_handler(int signal);
+void	setup_heredoc_signals(void);
 void	routine_child(int signal);
 
 // -------------------------------------- FREE --------------------------------

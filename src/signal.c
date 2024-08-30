@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:28 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 14:58:40 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 22:40:59 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,15 @@ void	routine_child(int signal)
 		printf("\n");
 		g_status = 130;
 	}
+}
+
+void	setup_heredoc_signals(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = heredoc_signal_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }

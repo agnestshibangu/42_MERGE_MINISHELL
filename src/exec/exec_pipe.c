@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:33 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 16:41:29 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/30 22:25:01 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    run_node_left(t_pipe_node *pipe_node, int *fd, t_data *data)
         redir_node = (t_redir_node *)pipe_node->left;
         if (redir_node->redir_type == HEREDOC)
         {
-            //
+            dup2(data->stdin_cpy, STDIN_FILENO);
             ft_heredoc(redir_node);
             pipe_node->left = redir_node->cmd;
         }        
@@ -41,7 +41,7 @@ void    run_node_right(t_pipe_node *pipe_node, int *fd, t_data *data)
         redir_node = (t_redir_node *)pipe_node->right;
         if (redir_node->redir_type == HEREDOC)
         {
-            // 
+            dup2(data->stdin_cpy, STDIN_FILENO);
             ft_heredoc(redir_node);
             pipe_node->right = redir_node->cmd;            
         }        
@@ -53,45 +53,6 @@ void    run_node_right(t_pipe_node *pipe_node, int *fd, t_data *data)
     run(pipe_node->right, data);
     exit(g_status);
 }
-// void    run_node_left(t_pipe_node *pipe_node, int *fd, t_data *data)
-// {
-//     t_exec_node *exec_node_left = (t_exec_node *)pipe_node->left;
-//     t_redir_node    *redir_node;
-
-//     if (pipe_node->left->type == REDIR)
-//     {
-//         redir_node = (t_redir_node *)pipe_node->left;
-//         if (redir_node->redir_type == HEREDOC)
-//         {
-//             //
-//             ft_heredoc(redir_node);
-//             pipe_node->left = redir_node->cmd;
-//         }        
-//     }
-//     dup_left(fd);
-//     run((t_node *)exec_node_left, data);
-// }
-
-// void    run_node_right(t_pipe_node *pipe_node, int *fd, t_data *data)
-// {
-//     t_redir_node    *redir_node;
-
-//     if (pipe_node->right->type == REDIR)
-//     {
-//         redir_node = (t_redir_node *)pipe_node->right;
-//         if (redir_node->redir_type == HEREDOC)
-//         {
-//             // 
-//             ft_heredoc(redir_node);
-//             pipe_node->right = redir_node->cmd;            
-//         }        
-//         else    
-//             dup_right(fd);
-//     }
-//     else
-//         dup_right(fd);
-//     run(pipe_node->right, data);
-// }
 
 int is_there_heredoc(t_node *node)
 {
