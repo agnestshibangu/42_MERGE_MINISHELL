@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/08/30 15:34:54 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:06:24 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
 {
 	char	*path;
 	char	**argv;
-    
-    printf("je suis dns run exec");
 
     path = NULL;
     argv = exec_node->args;
