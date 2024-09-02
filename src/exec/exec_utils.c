@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/02 18:56:26 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:51:22 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	fork_before_exec(t_node *node, t_data *data)
 	pid = ft_fork();
 	signal(SIGINT, routine_child);
 	if (pid == 0)
+	{
 		run(node, data);
+		// exit(0); // a check si pb a l'exec
+	}
 	else if (pid > 0)
 	{
 		while (waitpid(pid, &status, 0) == -1)
@@ -41,13 +44,14 @@ void	fork_before_exec(t_node *node, t_data *data)
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);
 	}
+	
 }
 
 void    before_run(t_node *node, t_data *data)
 {
-	// if (check_is_builtin((exec_node *)node))
-    //     run_exec_node(node, data);	
-	// else
+	if (check_is_builtin((t_exec_node *)node))
+        run_exec_node(node, data);	
+	else
 		fork_before_exec(node, data);
 }
 

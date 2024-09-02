@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:33 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/02 18:47:04 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:54:05 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,22 +81,22 @@ void    run_pipe_node(t_node *node, t_data *data)
     int     fd[2];
     pid_t   pid1;
     pid_t   pid2;
-    
+
     pipe_node = (t_pipe_node *)node;
     if (pipe(fd) == -1)
     {
+		g_status = 1;
         printf("error");
-        exit(EXIT_FAILURE);
+        exit(g_status);	
     }
     // NODE CHILD 1   
     pid1 = ft_fork();
     if (pid1 == 0)
     {
         run_node_left(pipe_node, fd, data);
-		
     }
-    // if there is heredoc
-    // if (is_there_heredoc(pipe_node->left) == 0 || pipe_node->right_node->type == 4)
+    // // if there is heredoc
+    // if (is_there_heredoc(pipe_node->left) == 0 || pipe_node->right->type == 4)
     //     waitpid(pid1, NULL, 0);
     // NODE CHILD 2
     pid2 = ft_fork();
