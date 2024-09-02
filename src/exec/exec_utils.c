@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 16:32:40 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:56:26 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	fork_before_exec(t_node *node, t_data *data)
 
 void    before_run(t_node *node, t_data *data)
 {
-	/* if (check_is_builtin((exec_node *)node) && data->nbr_cmd == 1)
-        run_exec_node(node, data);	
-	else */
+	// if (check_is_builtin((exec_node *)node))
+    //     run_exec_node(node, data);	
+	// else
 		fork_before_exec(node, data);
 }
 

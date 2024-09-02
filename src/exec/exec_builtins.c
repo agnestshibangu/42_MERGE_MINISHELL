@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:27 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/31 16:07:56 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:25:04 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int run_simple_builtins(t_exec_node *exec_node, t_data *data)
 {
     if (!strncmp(exec_node->args[0], "exit", 4)) {
-        ft_exit();
+        ft_exit(exec_node->args);
         return (1);
     }
     if (!ft_strncmp(exec_node->args[0], "echo", 4)) {

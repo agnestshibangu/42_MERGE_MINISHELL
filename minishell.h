@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 23:23:57 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:24:16 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,16 @@ int     ft_update_shell_level(t_data *data);
 int ft_unset(char **args, t_data *data);
 // env_builtins.c
 char	*ft_env(t_data *data);
+
 // exit_builtins.c
-void 	ft_exit();
+// void 	ft_exit();
+int	is_input_exit(char *input, t_data *data);
+void	ft_exit_and_free(char **input_cpy, t_data *data);
+void	actualize_status_and_exit(char *status);
+void	ft_exit(char **args);
+
+
+
 // change shell level
 int ft_update_shell_level(t_data *data);
 // void    run_exec(t_exec_node *exec_node, t_tabenv *tabenv)
