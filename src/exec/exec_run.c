@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/03 17:32:35 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:38:02 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
     }
 }
 
-int check_is_builtin(t_exec_node *exec_node) 
+int check_is_builtin(t_node *node) 
 {
     size_t num_builtins;
     size_t i;
-    
+	
+	t_exec_node *exec_node = (t_exec_node *)node;
+
     const char *builtins[] = {
         "exit", "echo", "env", "pwd", "export", "unset", "shlvl"
     };

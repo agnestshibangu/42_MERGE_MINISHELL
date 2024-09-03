@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 16:29:55 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:37:38 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,8 @@ int ft_update_shell_level(t_data *data);
 
 // t_node *create_exec_node(t_type type, bool is_builtin, const char *command);
 
-int check_is_builtin(t_exec_node *exec_node);
+//int check_is_builtin(t_exec_node *exec_node);
+int check_is_builtin(t_node *node);
 void 	is_builtin(t_exec_node *exec_node, t_data *data);
 void	run_exec(t_exec_node *exec_node, t_data *data);
 void    fill_struct(char *command, t_exec_node *exec_node);
