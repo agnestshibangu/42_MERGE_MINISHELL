@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:33 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/02 19:54:05 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:59:24 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void    run_pipe_node(t_node *node, t_data *data)
     {
         run_node_left(pipe_node, fd, data);
     }
-    // // if there is heredoc
+    // // // if there is heredoc
     // if (is_there_heredoc(pipe_node->left) == 0 || pipe_node->right->type == 4)
     //     waitpid(pid1, NULL, 0);
     // NODE CHILD 2
