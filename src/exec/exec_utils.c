@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 17:39:22 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:10:03 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,28 @@ void	fork_before_exec(t_node *node, t_data *data)
 	
 }
 
-void    before_run(t_node *node, t_data *data)
+void before_run(t_node *node, t_data *data)
 {
-	if (check_is_builtin(node))
-	else
-		fork_before_exec(node, data);
+    // Cette fonction vérifie si la commande est un builtin et agit en conséquence
+    if (node->type != REDIR && check_is_builtin(node))
+    {
+		t_exec_node *exec_node = (t_exec_node *)node;
+        run_builtin(exec_node, data);
+    }
+    else
+    {
+        fork_before_exec(node, data);
+    }
 }
+
+
+
+// void    before_run(t_node *node, t_data *data)
+// {
+// 	if (check_is_builtin(node))
+// 	else
+// 		fork_before_exec(node, data);
+// }
 
 void    run(t_node *node, t_data *data)
 {

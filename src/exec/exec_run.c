@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/03 17:38:02 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:09:07 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
     }
 }
 
+
 int check_is_builtin(t_node *node) 
 {
+    // Cette fonction vérifie si la commande contenue dans le nœud est un builtin
     size_t num_builtins;
     size_t i;
 	
-	t_exec_node *exec_node = (t_exec_node *)node;
+    t_exec_node *exec_node = (t_exec_node *)node; // On caste le nœud au bon format
 
     const char *builtins[] = {
         "exit", "echo", "env", "pwd", "export", "unset", "shlvl"
@@ -63,25 +65,61 @@ int check_is_builtin(t_node *node)
     i = 0;
     while (i < num_builtins)
     {
-        if (strcmp(exec_node->args[0], builtins[i]) == 0)
-            return (1);
-        i++;
+		if (strcmp(exec_node->args[0], builtins[i]) == 0) // ft_strcmp
+			return (1); // C'est un builtin
+		i++;
     }
-    return (0);
+    return (0); // Ce n'est pas un builtin
 }
 
 void run_exec_node(t_node *node, t_data *data)
 {
+    // Cette fonction exécute un nœud d'exécution spécifique
     t_exec_node *exec_node = (t_exec_node *)node;
 
-    if (check_is_builtin(exec_node))
+    if (check_is_builtin(node))
     {
         run_builtin(exec_node, data);
     }
     else
     {
-        run_exec(exec_node, data);
+        run_exec(exec_node, data); // Fonction spécifique pour exécuter les commandes non builtin
     }
 }
+
+// int check_is_builtin(t_node *node) 
+// {
+//     size_t num_builtins;
+//     size_t i;
+	
+// 	t_exec_node *exec_node = (t_exec_node *)node;
+
+//     const char *builtins[] = {
+//         "exit", "echo", "env", "pwd", "export", "unset", "shlvl"
+//     };
+//     num_builtins = sizeof(builtins) / sizeof(builtins[0]);
+//     i = 0;
+//     while (i < num_builtins)
+//     {
+//         if (strcmp(exec_node->args[0], builtins[i]) == 0)
+//             return (1);
+//         i++;
+//     }
+//     return (0);
+// }
+
+// void run_exec_node(t_node *node, t_data *data)
+// {
+//     t_exec_node *exec_node = (t_exec_node *)node;
+
+//     if (check_is_builtin(exec_node))
+//     {
+//         run_builtin(exec_node, data);
+//     }
+//     else
+//     {
+//         run_exec(exec_node, data);
+//     }
+// }
 
 
