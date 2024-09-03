@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/02 17:24:16 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:29:55 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_data
 // parsing.c
 t_node	*starting_tree(char *input, t_data *data);
 t_node	*put_endline(t_node *tree, t_data *data);
-bool	check_empty_input(char *input);
+bool	check_empty_input(char *input, t_data *data);
 
 // check_&_clean.c
 char	*check_fix_input(char *input, t_data *data);
@@ -165,6 +165,7 @@ void	routine_child(int signal);
 // -------------------------------------- FREE --------------------------------
 // free.c
 int		free_minishell(t_data *data); // free the minishell at the very end
+void	free_nodes(t_node *node);
 
 // -------------------------------- BUILTINS -----------------------------------
 

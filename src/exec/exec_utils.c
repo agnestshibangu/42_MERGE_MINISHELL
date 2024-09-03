@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/02 19:51:22 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:40:13 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	fork_before_exec(t_node *node, t_data *data)
 	if (pid == 0)
 	{
 		run(node, data);
-		// exit(0); // a check si pb a l'exec
+		exit(0); // a check si pb a l'exec
 	}
 	else if (pid > 0)
 	{

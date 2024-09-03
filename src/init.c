@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:42 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 22:31:24 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:34:33 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int ft_update_shell_level(t_data *data)
     int z;
     int num_to_update;
     char *temp;
+	char	*oui;
     
     x = 0;
     len = ft_strlen(name);
@@ -34,7 +35,9 @@ int ft_update_shell_level(t_data *data)
                 y++;
             z = y;    
             num_to_update = ft_atoi(&data->env_vars[x][z + 1]) + 1;
-            temp = ft_strdup(ft_itoa(num_to_update));
+			oui = ft_itoa(num_to_update);
+            temp = ft_strdup(oui);
+			free(oui);
             z = z + 1;
             y = 0;
             while (temp[y])
@@ -42,6 +45,7 @@ int ft_update_shell_level(t_data *data)
         }
         x++;
     }
+	free(temp);
     return (0);
 }
 
@@ -64,7 +68,7 @@ int init_env_tab(t_data *data, char **envp)
         return (1);
     env_len = 0;
     while (envp[env_len])
-    {   
+    {
         copy_of_env[env_len] = ft_strdup(envp[env_len]);
         env_len++;
     }

@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:36 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/02 18:44:59 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:52:23 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void 	show_prompt(t_data *data)
 		input = readline("minishell$ ");
 		if (is_input_exit(input, data) == 0)
 		 	printf("EXIT\n");
-		if (check_empty_input(input))
+		if (check_empty_input(input, data))
 		{
 			add_history(input);
             final_node = starting_tree(input, data);
             before_run(final_node, data);
-		} 
+			free_nodes(final_node);
+		}
 	}
 }
 

@@ -6,11 +6,23 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:50:56 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 23:14:55 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:43:58 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+/* char	*input_fixed(char *new_input, char **input)
+{
+	char	*temp;
+
+	temp = NULL;
+	temp = join_char(new_input, **input);
+	free(new_input);
+	new_input = temp;
+	(*input)++;
+	return (new_input);
+} */
 
 char	*input_fixed(char *new_input, char **input)
 {
@@ -18,7 +30,6 @@ char	*input_fixed(char *new_input, char **input)
 	(*input)++;
 	return (new_input);
 }
-
 
 char	*quotes_overload(char **input, char *new_input, t_data *data)
 {

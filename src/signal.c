@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:28 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 22:40:59 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:29:53 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void signal_handler(void)
     sa.sa_handler = new_routine;
     sigemptyset(&sa.sa_mask);
     sigaction(SIGINT, &sa, NULL);
-    signal(SIGQUIT, SIG_IGN);
+    //signal(SIGQUIT, SIG_IGN);
 }
 
 void new_routine(int signal)

@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:56:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 14:58:07 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/03 15:18:07 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-bool	check_empty_input(char *input)
+bool	check_empty_input(char *input, t_data *data)
 {
-	int i;
-	int j;
-
-	i = 0;
-	if (input[i] == '\0')
+	if (!input)
 	{
+		my_free_tab(data->env_vars);
+		//free(data);
+		// free(input);
+		printf("exit\n");
+		exit (1);
+	}
+	if (*input == '\0')
+	{
+		free(input);
 		return (false);
 	}
-	while (is_space(input[i]))
-		i++;
-	j = ft_strlen(input);
-	if (i == j)
-		return (false);
 	return (true);
 }
 
