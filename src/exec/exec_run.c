@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/04 10:58:17 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:48:14 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
     else
         run_command(&path, argv, data);
     if (execve(path, argv, data->env_vars) == -1) {
-        perror("execve failed");
+        ft_error("execve failed", -1);
         if (path != argv[0]) {
             free(path); 
         }

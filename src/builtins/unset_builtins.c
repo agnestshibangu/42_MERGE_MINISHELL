@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:39 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/08/29 17:10:18 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:45:10 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int ft_unset(char **args, t_data *data)
     name = (char *)malloc(sizeof(char) * (name_len + 1));
     if (!name)
     {
-        perror("Memory allocation error\n");
+        ft_error("Memory allocation error\n", 1);
         return (1);
     }    
     while (args[1][i])

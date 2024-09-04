@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:28 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/04 13:28:32 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:41:28 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,12 @@ int	is_input_exit(char *input, t_data *data)
 			i++;
 		if (i > 2)
 		{
-			printf("exit\nminishell: exit: too many arguments\n");
+			ft_error("too many arguments", 1);
 			my_free_tab(input_cpy);
 			return (g_status = 1, 0);
 		}
 		else
-		{
-			printf("exit\n");
 			ft_exit_and_free(input_cpy, data);
-		}
 	}
 	my_free_tab(input_cpy);
 	return (1);

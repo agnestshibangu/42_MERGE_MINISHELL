@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 11:03:38 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:40:25 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,10 @@ void	handle_line(char *line, int file)
 	ft_putstr_fd(line, file);
 	ft_putchar_fd('\n', file);
 	free(line);
+}
+int 	ft_error(char *msg, int exit_code)
+{
+	g_status = exit_code;
+	printf("minishell: %s\n", msg);
+	return (0);	
 }

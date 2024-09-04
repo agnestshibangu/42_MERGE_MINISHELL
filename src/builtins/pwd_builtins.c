@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:36 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/08/15 11:31:21 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:44:54 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int     ft_pwd(void)
 
     if (getcwd(cwd, sizeof(cwd)) == NULL)
     {
-        write(1, "error PWD\n", 10);
+		ft_error("minishell : error pwd", 1);
         return (0);
     }
     else 

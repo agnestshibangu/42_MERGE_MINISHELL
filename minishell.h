@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 19:50:48 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:40:41 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,7 @@ void    before_run(t_node *node, t_data *data);
 void    run(t_node *node, t_data *data);
 void    dup_right(int *fd);
 void    dup_left(int *fd);
+int 	ft_error(char *msg, int exit_code);
 
 // ------------------------------------------------------------------------------
 

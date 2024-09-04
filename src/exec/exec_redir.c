@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:18 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 17:22:50 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:47:46 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	reopen_stdin_stdout(int fd)
 	if (fd == 0)
 	{
 		if (open("/dev/tty", O_RDONLY) < 0)
-			printf("open stdin failed");
+			ft_error("minishell : open stdin failed", 1);
 	}
 	else if (fd == 1)
 	{
 		if (open("/dev/tty", O_WRONLY) < 0)
-			printf("open stdout failed");
+			ft_error("minishell : open stdout failed", 1);
 	}
 }
 
@@ -50,7 +50,6 @@ void	run_heredoc(t_redir_node *redir_node)
 		}
 		if (is_line_delimiter(line, redir_node))
 		{
-			//free(line);
 			close(file);
 			return ;
 		}
@@ -58,9 +57,7 @@ void	run_heredoc(t_redir_node *redir_node)
 		{
 			ft_putstr_fd(line, file);
 			ft_putchar_fd('\n', file);
-			//free(line);
 		}
-			// handle_line(line, file);
 	}
 }
 
@@ -72,9 +69,9 @@ void	ft_heredoc(t_redir_node *redir_node)
 	run_heredoc(redir_node);
 	file = open(".here_doc", O_RDONLY, 0777);
 	if (file < 0)
-		printf("heredoc");
+		ft_error("minishell: error with heredoc", 1);
 	if (dup2(file, 0) < 0)
-		printf("dup2");
+		ft_error("minishell: failed to dup2", 1);
 	close(file);
 }
 

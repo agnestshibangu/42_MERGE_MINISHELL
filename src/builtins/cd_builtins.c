@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:18 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/08/15 11:31:08 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:39:00 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ int ft_cd(char *str)
 
     if (!str || strcmp(str, "~") == 0)
     {
-        printf("home directory :)");
         path = getenv("HOME");
         if (!path)
         {
-            fprintf(stderr, "cd: HOME not set\n");
-            return 1;
+            ft_error("cd: HOME not set\n", 1);
+            return (1);
         }   
     }
     else
