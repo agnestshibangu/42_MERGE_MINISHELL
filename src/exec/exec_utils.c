@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 14:40:25 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:54:10 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	fork_before_exec(t_node *node, t_data *data)
 
 void before_run(t_node *node, t_data *data)
 {
-    // Cette fonction vérifie si la commande est un builtin et agit en conséquence
     if (node->type != REDIR && check_is_builtin(node))
     {
 		t_exec_node *exec_node = (t_exec_node *)node;
@@ -60,14 +59,6 @@ void before_run(t_node *node, t_data *data)
         fork_before_exec(node, data);
     }
 }
-
-// void    before_run(t_node *node, t_data *data)
-// {
-// 	if (check_is_builtin(node))
-// 	else
-// 		fork_before_exec(node, data);
-// }
-
 
 void    run(t_node *node, t_data *data)
 {
@@ -100,12 +91,12 @@ int	is_line_delimiter(char *line, t_redir_node *redir_node)
 
 	if (!line)
 	{
-		// printf("Debug: line is NULL\n");
+		ft_error("Debug: line is NULL\n", 1);
 		return (0);
 	}
 	if (*line == '\0')
 	{
-		// printf("Debug: line is empty\n");
+		ft_error("Debug: line is empty\n", 1);
 		return (0);
 	}
 	line_len = ft_strlen(line);
