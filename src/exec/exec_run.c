@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/04 15:03:24 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:08:41 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,13 @@ int check_is_builtin(t_node *node)
 		(exec_node->args[1] == NULL || exec_node->args[1][0] == ' ' || exec_node->args[1][0] == '\0')) {
 		return (1);
 	}
-	if (!ft_strncmp(exec_node->args[0], "echo", 4)) {
+	if (!ft_strncmp(exec_node->args[0], "export", 6)) {
 		return (1);
 	}
-	if (!ft_strncmp(exec_node->args[0], "env", 3) && 
-		(exec_node->args[1] == NULL || exec_node->args[1][0] == ' ' || exec_node->args[1][0] == '\0')) {
+	if (!ft_strncmp(exec_node->args[0], "unset", 5)) {
 		return (1);
 	}
-	if (!ft_strncmp(exec_node->args[0], "pwd", 3) && 
-		(exec_node->args[1] == NULL || exec_node->args[1][0] == ' ' || exec_node->args[1][0] == '\0')) {
+	if (!ft_strncmp(exec_node->args[0], "cd", 2)) {
 		return (1);
 	}	
 	return (0); // Ce n'est pas un builtin
