@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 14:40:41 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:39:28 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,10 @@ int     ft_update_shell_level(t_data *data);
 // unset_builtins.c
 //int ft_unset(const char *str, t_data *data);
 
+void	unset_update_env(char *name, t_data *data);
 int ft_unset(char **args, t_data *data);
 // env_builtins.c
+int create_env(char *name,t_data *data, int i);
 char	*ft_env(t_data *data);
 
 // exit_builtins.c
