@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:25 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/08/28 17:49:01 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:04:01 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_env(t_data *data)
 	while (data->env_vars[i])
 	{
 		ft_putstr_fd(data->env_vars[i], 1);
-        ft_putchar_fd('\n', 1);
+		ft_putchar_fd('\n', 1);
 		i++;
 	}
 	return (NULL);

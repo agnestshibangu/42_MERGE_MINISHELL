@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scanning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:39:14 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 15:26:39 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/04 15:13:26 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,16 @@ int	fill_type(char **input, int type, char *end_scan)
 	return (type);
 }
 
+// fonction qui scan l'input en skippant les ' '
+// et cherche le caractere en target. (en l'occurence '|' etc)
+
 int	peek(char **start_scan, char *end_input, char *target)
 {
 	char	*str;
 
 	str = *start_scan;
-	while (str < end_input && is_space(*str))     // fonction qui scan l'input en skippant les ' '
-		str++;                                         // et cherche le caractere en target. (en l'occurence '|' etc)
+	while (str < end_input && is_space(*str))     
+		str++;                                         
 	*start_scan = str;
 	return (*str && ft_strchr(target, *str));
 }

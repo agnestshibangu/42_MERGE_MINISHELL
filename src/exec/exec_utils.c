@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 14:54:10 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:03:33 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	ft_fork(void)
 
 	pid = fork();
 	if (pid == -1)
-    {
-        printf("error on fork");
-        exit(EXIT_FAILURE);
-    }
+	{
+		printf("error on fork");
+		exit(EXIT_FAILURE);
+	}
 	return (pid);
 }
 void	fork_before_exec(t_node *node, t_data *data)
@@ -49,37 +49,37 @@ void	fork_before_exec(t_node *node, t_data *data)
 
 void before_run(t_node *node, t_data *data)
 {
-    if (node->type != REDIR && check_is_builtin(node))
-    {
+	if (node->type != REDIR && check_is_builtin(node))
+	{
 		t_exec_node *exec_node = (t_exec_node *)node;
-        run_builtin(exec_node, data);
-    }
-    else
-    {
-        fork_before_exec(node, data);
-    }
+		run_builtin(exec_node, data);
+	}
+	else
+	{
+		fork_before_exec(node, data);
+	}
 }
 
 void    run(t_node *node, t_data *data)
 {
 	if (node->type == EXEC)
 		run_exec_node(node, data);
-    else if (node->type == PIPE)
+	else if (node->type == PIPE)
 		run_pipe_node(node, data);
-    else if (node->type == REDIR)
-        run_redir_node(node, data);
+	else if (node->type == REDIR)
+		run_redir_node(node, data);
 }
 
 void    dup_right(int *fd)
 {
-    close(fd[1]);
-    dup2(fd[0], 0);
-    close(fd[0]);
+	close(fd[1]);
+	dup2(fd[0], 0);
+	close(fd[0]);
 }
 
 void   dup_left(int *fd)
 {
-    close(fd[0]);
+	close(fd[0]);
 	dup2(fd[1], 1);
 	close(fd[1]);    
 }
