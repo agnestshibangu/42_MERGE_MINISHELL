@@ -6,18 +6,11 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:28 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/02 17:22:55 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:28:32 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-// void ft_exit(void)
-// {
-//     printf("Exiting shell...\n");
-//     exit(0);  
-// }
-
 
 int	is_input_exit(char *input, t_data *data)
 {
@@ -64,7 +57,6 @@ void	ft_exit_and_free(char **input_cpy, t_data *data)
 					input_cpy[1]);
 				my_free_tab(input_cpy);
 				my_free_tab(data->env_vars);
-				//free(data);
 				exit (1);
 			}
 			i++;
@@ -72,7 +64,6 @@ void	ft_exit_and_free(char **input_cpy, t_data *data)
 	}
 	my_free_tab(input_cpy);
 	my_free_tab(data->env_vars);
-	// free(data);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 20:10:03 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:03:38 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,13 @@ void before_run(t_node *node, t_data *data)
     }
 }
 
-
-
 // void    before_run(t_node *node, t_data *data)
 // {
 // 	if (check_is_builtin(node))
 // 	else
 // 		fork_before_exec(node, data);
 // }
+
 
 void    run(t_node *node, t_data *data)
 {

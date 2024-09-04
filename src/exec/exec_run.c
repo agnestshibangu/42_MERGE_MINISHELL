@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/03 20:09:07 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:58:17 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int check_is_builtin(t_node *node)
     size_t i;
 	
     t_exec_node *exec_node = (t_exec_node *)node; // On caste le nœud au bon format
-
+	// if function avec des comparaisons 
     const char *builtins[] = {
         "exit", "echo", "env", "pwd", "export", "unset", "shlvl"
     };

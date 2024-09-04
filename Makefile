@@ -12,7 +12,6 @@ SRCS =  $(wildcard $(DIR_SRC)*.c) \
 		$(wildcard $(DIR_SRC)/libft/*.c) \
 		$(wildcard $(DIR_SRC)/builtins/*.c) \
 		$(wildcard $(DIR_SRC)/pipex/*.c) \
-		$(wildcard $(DIR_SRC)/run/*.c) \
 
 OBJS = $(SRCS:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 

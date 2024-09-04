@@ -6,35 +6,36 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:28 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 15:29:53 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:35:26 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// int	g_status;
-
 void signal_handler(void)
 {
-    struct sigaction sa;
 
-    sa.sa_flags = SA_RESTART;
-    sa.sa_handler = new_routine;
-    sigemptyset(&sa.sa_mask);
-    sigaction(SIGINT, &sa, NULL);
-    //signal(SIGQUIT, SIG_IGN);
+	// printf("TEST SIGNAUX\n");
+	struct sigaction	sa;
+
+	sa.sa_handler = new_routine;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void new_routine(int signal)
 {
-    if (signal == SIGINT && g_status != -1)
-    {
-        g_status = 130;
-        printf("\n");
-        rl_replace_line("", 0);
-        rl_on_new_line();
-        rl_redisplay();
-    }
+	if (signal == SIGINT && g_status != -1)
+	{
+		/// printf("alooooooo");
+		g_status = 130;
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 void	heredoc_signal(void)
@@ -62,7 +63,6 @@ void	heredoc_signal_handler(int signal)
 		exit (g_status);
 	}
 }
-
 
 void	routine_child(int signal)
 {
