@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:49:36 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 23:17:10 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:07:47 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_node	*parse_execution(char **start_scan, char *end_input)
 	char		*endoken;
 	int			i;
 
-	node = create_exec_node();                              // initialisation de la node exec
-	exec_node = (t_exec_node *)node;                        // cast de la node pour la rendre en exec
+	node = create_exec_node();
+	exec_node = (t_exec_node *)node;
 	node = parse_redirection(node, start_scan, end_input);
 	if (!node)
 		return (NULL);
@@ -40,10 +40,9 @@ t_node	*parse_execution(char **start_scan, char *end_input)
 	return (node);
 }
 
-
 t_node	*create_exec_node(void)
 {
-	t_exec_node *exec_node;
+	t_exec_node	*exec_node;
 
 	exec_node = malloc(sizeof(*exec_node));
 	if (!exec_node)
@@ -56,7 +55,7 @@ t_node	*create_exec_node(void)
 void	fill_node(t_exec_node *exec_node, char *startoken, char *endoken,
 			int *i)
 {
-	exec_node->args[*i] = startoken;        // juste rempli la node exec
+	exec_node->args[*i] = startoken;
 	exec_node->end_args[*i] = endoken;
 	(*i)++;
 }

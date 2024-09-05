@@ -6,13 +6,14 @@
 /*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:20:49 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 14:48:50 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:09:33 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	quotes_checker(int *simple_quote, int *double_quotes, char *input, int i)
+void	quotes_checker(int *simple_quote,
+		int *double_quotes, char *input, int i)
 {
 	if (input[i] == '"')
 	{

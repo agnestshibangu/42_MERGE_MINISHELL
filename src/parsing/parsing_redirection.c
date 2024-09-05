@@ -6,7 +6,7 @@
 /*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:56:30 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/28 15:03:08 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:09:08 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_node	*parse_redirection(t_node *node, char **start_scan, char *end_input)
 		if (getoken(start_scan, end_input, &start_file, &end_file) != EXEC)
 		{
 			free(node);
-			return (print_error_return("missing file or delimiter for redirection"));
+			return (print_error_return
+				("missing file or delimiter for redirection"));
 		}
 		node = create_redir_node(token_type, node, start_file, end_file);
 	}

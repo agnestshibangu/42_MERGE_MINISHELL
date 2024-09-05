@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:50:56 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 11:16:18 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:07:11 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-/* char	*input_fixed(char *new_input, char **input)
-{
-	char	*temp;
-
-	temp = NULL;
-	temp = join_char(new_input, **input);
-	free(new_input);
-	new_input = temp;
-	(*input)++;
-	return (new_input);
-} */
 
 char	*input_fixed(char *new_input, char **input)
 {
@@ -36,7 +24,6 @@ char	*quotes_overload(char **input, char *new_input, t_data *data)
 	int		count_quotes;
 	char	quote_type;
 
-    (void)data;
 	while (**input && is_quotes(**input))
 	{
 		count_quotes = 0;
@@ -61,14 +48,12 @@ char	*quotes_overload(char **input, char *new_input, t_data *data)
 	return (new_input);
 }
 
-
 char	*new_arg(char *new_input, bool *open_tok, char quote)
 {
 	new_input = join_char(new_input, quote);
 	*open_tok = !*open_tok;
 	return (new_input);
 }
-
 
 char	*clean(char *new_input, char *input, t_data *data)
 {
@@ -98,7 +83,6 @@ char	*clean(char *new_input, char *input, t_data *data)
 		new_input = new_arg(new_input, &open_tok, quote);
 	return (new_input);
 }
-
 
 char	*check_fix_input(char *input, t_data *data)
 {

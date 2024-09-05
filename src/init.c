@@ -6,12 +6,11 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:42 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 15:39:03 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:42:30 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 int	ft_update_shell_level(t_data *data)
 {

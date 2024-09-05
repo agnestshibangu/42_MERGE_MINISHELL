@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:56:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 15:18:07 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:03:22 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ bool	check_empty_input(char *input, t_data *data)
 	if (!input)
 	{
 		my_free_tab(data->env_vars);
-		//free(data);
-		// free(input);
 		printf("exit\n");
 		exit (1);
 	}
@@ -36,20 +34,20 @@ t_node	*starting_tree(char *input, t_data *data)
 	char	*end_input;
 	char	*tmp;
 
-	tmp = check_fix_input(input, data);                                    // creation copie de l'input
+	tmp = check_fix_input(input, data);
 	if (!tmp)
 		return (NULL);
-	data->start_input = tmp;                      // stockage dans data
-	end_input = tmp + ft_strlen(tmp);               // pointeur sur la fin de l'input (utile pour token)
-	tree = check_4_pipes(&tmp, end_input, data);     // allez on goooooo
+	data->start_input = tmp;
+	end_input = tmp + ft_strlen(tmp);
+	tree = check_4_pipes(&tmp, end_input, data);
 	if (!tree)
 	{
 		free(input);
-		free(data->start_input);                  // gestion erreur si tree vide
+		free(data->start_input);
 		return (NULL);
 	}
-	tree = put_endline(tree, data);                       // mise en place des '\0' entre chaque commandes
-	return (tree);                                  // return dans le main et ca part en exec
+	tree = put_endline(tree, data);
+	return (tree);
 }
 
 t_node	*put_endline(t_node *tree, t_data *data)

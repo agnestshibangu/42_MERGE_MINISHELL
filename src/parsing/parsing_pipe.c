@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:59:31 by thsion            #+#    #+#             */
-/*   Updated: 2024/08/30 14:41:15 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:08:38 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_node	*check_4_pipes(char **start_scan, char *end_input, t_data *data)
 			free(node);
 			return (NULL);
 		}
-		node = create_pipe_node(node, check_4_pipes(start_scan, end_input, data));
+		node = create_pipe_node(node,
+				check_4_pipes(start_scan, end_input, data));
 		if (!node)
 		{
 			free(node);
