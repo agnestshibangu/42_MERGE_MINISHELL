@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 11:12:18 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:22:40 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,8 @@ void    run_pipe_node(t_node *node, t_data *data);
 
 // t_node *create_redir_node(t_type type, char *stop_word, int redir_type, t_node *node_cmd);
 void	reopen_stdin_stdout(int fd);
-void    run_heredoc(t_redir_node *redir_node);
+int 	run_heredoc(t_redir_node *redir_node);
+// void    run_heredoc(t_redir_node *redir_node);
 void    ft_heredoc(t_redir_node *redir_node);
 void	run_redir_node(t_node *node, t_data *data);
 int 	handle_close(int fd);

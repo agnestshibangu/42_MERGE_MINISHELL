@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:54:19 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/05/28 21:20:45 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:43:43 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../minishell.h"
+#include "../../minishell.h"
 
 char	*manage_storage(char *storage, char *buffer)
 {

@@ -6,15 +6,11 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:18 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 14:47:46 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:24:17 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include <fcntl.h>   // pour open()
-#include <unistd.h>  // pour read(), write(), close()
-#include <stdio.h>   // pour perror()
-#include <stdlib.h>  // pour exit()
 
 void	reopen_stdin_stdout(int fd)
 {
@@ -30,7 +26,7 @@ void	reopen_stdin_stdout(int fd)
 	}
 }
 
-void	run_heredoc(t_redir_node *redir_node)
+int	run_heredoc(t_redir_node *redir_node)
 {
 	char	*line;
 	int		file;
@@ -43,15 +39,11 @@ void	run_heredoc(t_redir_node *redir_node)
 	{
 		line = readline("> ");
 		if (!line)
-		{
-			printf("minishell: warning: here-document delimited by\
-			end-of-file (wanted %s)\n", redir_node->file);
-			return ;
-		}
+			return (ft_error("minishell: error no line", 1), 0);
 		if (is_line_delimiter(line, redir_node))
 		{
 			close(file);
-			return ;
+			return (0);
 		}
 		else
 		{
@@ -75,9 +67,9 @@ void	ft_heredoc(t_redir_node *redir_node)
 	close(file);
 }
 
-void run_redir_node(t_node *node, t_data *data)
+void	run_redir_node(t_node *node, t_data *data)
 {
-	t_redir_node *redir_node;
+	t_redir_node	*redir_node;
 
 	redir_node = (t_redir_node *)node;
 	if (redir_node->redir_type == HEREDOC)

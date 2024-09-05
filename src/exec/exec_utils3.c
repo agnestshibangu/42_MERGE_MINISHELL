@@ -1,37 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_function.c                                     :+:      :+:    :+:   */
+/*   exec_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 21:21:18 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/05 14:43:03 by agtshiba         ###   ########.fr       */
+/*   Created: 2024/09/05 14:47:46 by agtshiba          #+#    #+#             */
+/*   Updated: 2024/09/05 15:04:38 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*get_next_line(int fd)
+void	my_free_tab(char **tab)
 {
-	static char	*storage;
-	char		*buffer;
-	char		*line;
+	size_t	i;
 
-	storage = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (0);
-	line = make_line(fd, buffer, storage);
-	free(buffer);
-	if (!line)
+	i = 0;
+	while (tab[i])
 	{
-		free_storage(storage);
-		return (NULL);
+		free(tab[i]);
+		i++;
 	}
-	if (ft_strchr(line, '\n') || line != NULL)
-		storage = my_extract(line);
-	return (line);
+	free(tab);
+}
+
+int	find_path_var(char *name)
+{
+	char	*needle;
+	int		needle_len;
+
+	needle = "PATH=";
+	needle_len = ft_strlen(needle);
+	if (ft_strncmp(name, needle, needle_len) == 0)
+		return (1);
+	else
+		return (0);
+}
+
+char	*find_path_variable_function(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (find_path_var(env[i]))
+			return (env[i]);
+		i++;
+	}
+	return (NULL);
 }

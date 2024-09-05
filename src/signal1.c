@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   signal1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:28 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 13:35:26 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:11:41 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void signal_handler(void)
+void	signal_handler(void)
 {
-
-	// printf("TEST SIGNAUX\n");
 	struct sigaction	sa;
 
 	sa.sa_handler = new_routine;
@@ -25,11 +23,10 @@ void signal_handler(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void new_routine(int signal)
+void	new_routine(int signal)
 {
 	if (signal == SIGINT && g_status != -1)
 	{
-		/// printf("alooooooo");
 		g_status = 130;
 		printf("\n");
 		rl_replace_line("", 0);
@@ -71,15 +68,4 @@ void	routine_child(int signal)
 		printf("\n");
 		g_status = 130;
 	}
-}
-
-void	setup_heredoc_signals(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_handler = heredoc_signal_handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
-	signal(SIGQUIT, SIG_IGN);
 }

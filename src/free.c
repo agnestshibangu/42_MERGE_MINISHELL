@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:47 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 16:07:12 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:35:41 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,15 @@ void	free_nodes(t_node *node)
 {
 	t_pipe_node	*tamere;
 	t_redir_node *tonpere;
-	t_exec_node	*nathalie;
+	t_exec_node	*tagrandmereen3d;
 
 	if (node->type == EXEC)
 	{
-	    printf("node exec\n");
-		nathalie = (t_exec_node *)node;
-		free(nathalie);
+		tagrandmereen3d = (t_exec_node *)node;
+		free(tagrandmereen3d);
 	}
 	else if (node->type == PIPE)
 	{
-		
-		printf("noode pipe\n");
 		tamere = (t_pipe_node *)node;
 		free_nodes(tamere->left);		
 		free_nodes(tamere->right);	
