@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 17:39:28 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:12:18 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ typedef struct s_data
 	int		nbr_cmd;
 	char	**env_vars;
 	char	*start_input;
+	int		dollar_len;
+	char	*dollar_name;
+	int		dollar_index;
 	int		stdin_cpy;
 	int		stdout_cpy;
 }				t_data;
@@ -145,6 +148,13 @@ int		fill_redirection(char **str, int type);
 t_node	*check_4_pipes(char **start_scan, char *end_input, t_data *data);
 t_node	*create_pipe_node(t_node *left, t_node *right);
 int		check_next_arg(char *start_scan, char *end_input);
+
+// dollar_management.c
+char	*convert_money(char *new_input, char **input, t_data *data);
+char	*get_the_money(char *new_input, t_data *data);
+char	*moneys_name(t_data *data, char **input);
+char	*get_status(char *new_input);
+bool	check_moneys_there(t_data *data);
 
 // ----------------------------------- INIT -----------------------------------
 // init.c

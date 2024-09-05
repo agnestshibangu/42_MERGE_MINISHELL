@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:50:56 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/03 16:43:58 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:16:18 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char	*quotes_overload(char **input, char *new_input, t_data *data)
 		{
 			while (**input != quote_type)
 			{
-				/* if (**input == '$' && quote_type == '"')
-					new_input = replace_dollar(new_input, input, data); */
+				if (**input == '$' && quote_type == '"')
+					new_input = convert_money(new_input, input, data);
 				if (**input != quote_type)
 					new_input = input_fixed(new_input, input);
 			}
@@ -88,8 +88,8 @@ char	*clean(char *new_input, char *input, t_data *data)
 		{
 			if (open_tok == 1 && (is_space(*input) || is_symbol(*input)))
 				new_input = new_arg(new_input, &open_tok, quote);
-			/* if (*input == '$')
-				new_input = replace_dollar(new_input, &input, data); */
+			if (*input == '$')
+				new_input = convert_money(new_input, &input, data);
 			else
 				new_input = input_fixed(new_input, &input);
 		}

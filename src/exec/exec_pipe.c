@@ -6,12 +6,11 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:33 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/04 15:03:13 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:14:30 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 void    run_node_left(t_pipe_node *pipe_node, int *fd, t_data *data)
 {
