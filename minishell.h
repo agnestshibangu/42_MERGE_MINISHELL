@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 16:39:53 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:21:08 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,12 +188,16 @@ int		ft_cd(char *str);
 // pwd_builtins.c
 int		ft_pwd(void);
 // export_builtins.c
-int		ft_export(char **args, t_data *data);
+// void 	ft_export_search(char **args, int line, int i, t_data *data);
+// int		ft_export(char **args, t_data *data);
+int	ft_export(char **args, t_data *data);
 char	*each_arg_export(char **args);
 char	**init_env_tab_export(char **envp);
-
 char	**create_export_tab(char **copy_for_print);
 void print_export(t_data *data);
+void 	my_swap(char **tab, char *temp, int a, int b);
+char 	**sort_alpha_export(char **tab);
+
 // int		ft_export(char *name, t_data *data);
 // shell level
 int		ft_update_shell_level(t_data *data);
