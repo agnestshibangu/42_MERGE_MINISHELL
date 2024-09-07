@@ -6,7 +6,7 @@
 /*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/07 19:04:33 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:08:58 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	run_command(char **path, char **argv, t_data *data)
 {
 	*path = get_every_path(data->env_vars, argv[0]);
 	if (!*path)
-		my_free_tab(argv);
+	{
+		ft_error("command not found", -1);
+		free(argv[0]);
+		exit(1);
+	}
 }
 
 void	run_exec(t_exec_node *exec_node, t_data *data)

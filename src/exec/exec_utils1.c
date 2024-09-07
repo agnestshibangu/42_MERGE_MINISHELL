@@ -6,7 +6,7 @@
 /*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 18:30:01 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/07 20:10:13 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,17 @@ void	run(t_node *node, t_data *data)
 		run_pipe_node(node, data);
 	else if (node->type == REDIR)
 		run_redir_node(node, data);
+}
+
+int	search_for_value(t_data *data, char *searched)
+{
+	int		x;
+
+	x = -1;
+	while (data->env_vars[++x])
+	{
+		if (ft_strncmp(data->env_vars[x], searched, ft_strlen(searched)) == 0)
+			return (x);
+	}
+	return (-1);
 }
