@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 16:20:21 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 14:48:30 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,7 @@ int		handle_close(int fd);
 // -------------------- RUN UTILS ----------------
 
 int		is_line_delimiter(char *line, t_redir_node *redir_node);
+int		search_for_value(t_data *data, char *searched);
 void	handle_line(char *line, int file);
 // void    fill_struct(char *command, t_exec_node *exec_node);
 void	fork_before_exec(t_node *node, t_data *data);
