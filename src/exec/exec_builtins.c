@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:45:27 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 18:29:02 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:10:04 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 int	run_simple_builtins(t_exec_node *exec_node, t_data *data)
 {
 	if (!strncmp(exec_node->args[0], "exit", 4))
-		return (ft_exit(exec_node->args, data), 1);
-	if (!ft_strncmp(exec_node->args[0], "echo", 4) && exec_node->args[1])
+		return (ft_exit(exec_node->args), 1);
+	if (!ft_strncmp(exec_node->args[0], "echo", 4))
 		return (ft_echo(&exec_node->args[1], 1), 1);
-	else if (!ft_strncmp(exec_node->args[0], "echo", 4) && !exec_node->args[1])
-		return (printf("\n"), 1);
 	if (!ft_strncmp(exec_node->args[0], "env", 3)
 		&& (exec_node->args[1] == NULL || exec_node->args[1][0] == ' '
 		|| exec_node->args[1][0] == '\0'))
@@ -28,8 +26,10 @@ int	run_simple_builtins(t_exec_node *exec_node, t_data *data)
 		&& (exec_node->args[1] == NULL || exec_node->args[1][0] == ' '
 		|| exec_node->args[1][0] == '\0'))
 		return (ft_pwd(), 1);
-	if (!ft_strncmp(exec_node->args[0], "cd", 2))
-		return (ft_cd(exec_node->args, data), 1);
+	if (!ft_strncmp(exec_node->args[0], "cd", 2)
+		&& (exec_node->args[1] == NULL || exec_node->args[1][0] == ' '
+		|| exec_node->args[1][0] == '\0'))
+		return (ft_cd(exec_node->args[1]), 1);
 	return (0);
 }
 
