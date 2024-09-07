@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/07 14:23:27 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 20:08:58 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	run_command(char **path, char **argv, t_data *data)
 	{
 		ft_error("command not found", -1);
 		free(argv[0]);
-		exit(1);  
+		exit(1);
 	}
 }
 
@@ -39,7 +39,7 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
 	path = NULL;
 	argv = exec_node->args;
 	if (!argv || !argv[0])
-		exit(EXIT_FAILURE);		
+		exit(EXIT_FAILURE);
 	if (ft_strchr(argv[0], '/') != NULL)
 		run_path(argv, &path);
 	else
