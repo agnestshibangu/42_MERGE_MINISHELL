@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:32 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/07 15:44:31 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:05:15 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	ft_export(char **args, t_data *data)
 
 	i = 1;
 	y = 0;
+	if (!args[1])
+		print_export(data);
 	while (args[i])
 	{
 		searched = ft_strdup(args[i]);
@@ -94,4 +96,70 @@ int	ft_export(char **args, t_data *data)
 		i++;
 	}
 	return (1);
+}
+char	**init_env_tab_export(char **envp)
+{
+	char	**copy_of_env_export;
+	int		env_len;
+
+	env_len = 0;
+	while (envp[env_len])
+		env_len++;
+	copy_of_env_export = malloc((env_len + 1) * sizeof(char *));
+	if (!copy_of_env_export)
+		return (NULL);
+	env_len = 0;
+	while (envp[env_len])
+	{
+		copy_of_env_export[env_len] = ft_strdup(envp[env_len]);
+		env_len++;
+	}
+	copy_of_env_export[env_len] = NULL;
+	return (copy_of_env_export);
+}
+
+char	**create_export_tab(char **copy_for_print)
+{
+	char *temp1;
+	char *temp2;
+	int i;
+	int j;
+	
+	i = 0;
+	while (copy_for_print[i])
+	{	
+		j = 0;
+		while (copy_for_print[i][j] != '=' && copy_for_print[i][j])
+			j++;
+		if (copy_for_print[i][j] == '=')
+		{
+			temp1 = ft_strjoin("\"", &copy_for_print[i][j + 1]);
+			temp2 = ft_strjoin(temp1, "\"");
+			free(temp1);
+			copy_for_print[i][j + 1] = '\0';
+			temp1 = ft_strjoin(copy_for_print[i], temp2);
+			free(temp2);
+			free(copy_for_print[i]);
+			copy_for_print[i] = temp1;
+		}
+		i++;
+	}
+	return (copy_for_print);
+}
+
+void print_export(t_data *data)
+{
+	char **copy_for_print;
+	int i;
+	
+	copy_for_print = init_env_tab_export(data->env_vars);
+	copy_for_print = create_export_tab(copy_for_print);
+	i = 0;
+	while (copy_for_print[i])
+	{
+		printf("%s", copy_for_print[i]);
+		printf("\n");
+		i++;
+	}
+	my_free_tab(copy_for_print);
 }
