@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_builtins.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:36 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/07 18:28:44 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/04 17:26:35 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_pwd(void)
 	else
 	{
 		ft_putstr_fd(cwd, 1);
-		printf("\n");
 		return (1);
 	}
 }
