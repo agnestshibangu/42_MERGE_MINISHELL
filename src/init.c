@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:42 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 14:47:59 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:26:57 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,20 @@ int	init_env_tab(t_data *data, char **envp)
 	ft_update_shell_level(data);
 	handle_in_out(data);
 	return (0);
+}
+
+int	search_row(t_data *data, char *str)
+{
+	int	i;
+
+	i = 0;
+	while (data->env_vars[i])
+	{
+		if (ft_strncmp(str, data->env_vars[i], ft_strlen(str)) == 0
+			&& (data->env_vars[i][ft_strlen(str) == '='
+				|| data->env_vars[i][ft_strlen(str)] == '\0']))
+			return (i);
+		i++;
+	}
+	return (-1);
 }

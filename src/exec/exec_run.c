@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
 /*   Updated: 2024/09/07 20:08:58 by agtshiba         ###   ########.fr       */
@@ -46,8 +46,10 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
 		run_command(&path, argv, data);
 	if (execve(path, argv, data->env_vars) == -1)
 	{
-		ft_error("commmand not found", -1);
-		free(argv[0]);
+		ft_error("command not found", -1);
+		if (path != argv[0])
+			free(path);
+		my_free_tab(argv);
 	}
 }
 
