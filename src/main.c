@@ -3,36 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:36 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 11:46:51 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:27:41 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 int	g_status;
-
-// int is_only_spaces(char *input)
-// {
-//     int i;
-
-//     i = 0;
-//     if (input == NULL || input == ' ')
-// 	{
-// 		printf("i am here");	
-//         return (1); 
-// 	}
-		
-//     // while (input[i])
-//     // {
-//     //     if (input[i] == ' ') 
-//     //         return (0); 
-//     //     i++;
-//     // }
-//     return (1);
-// }
 
 void	show_prompt(t_data *data)
 {
@@ -49,8 +29,15 @@ void	show_prompt(t_data *data)
 		{
 			add_history(input);
 			final_node = starting_tree(input, data);
-			before_run(final_node, data);
-			free_nodes(final_node);
+			data->first_node = final_node;
+			if (!final_node)
+				free_nodes(final_node);
+			else
+			{
+				before_run(final_node, data);
+				free_nodes(final_node);
+				free(data->start_input);
+			}
 		}
 	}
 }

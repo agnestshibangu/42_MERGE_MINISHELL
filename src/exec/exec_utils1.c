@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 15:24:52 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:30:01 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	fork_before_exec(t_node *node, t_data *data)
 	pid = 0;
 	pid = ft_fork();
 	signal(SIGINT, routine_child);
-
 	if (pid == 0)
 	{
 		run(node, data);
@@ -52,8 +51,6 @@ void	before_run(t_node *node, t_data *data)
 {
 	t_exec_node	*exec_node;
 
-	//exec_node = (t_exec_node *)node;
-	//if (node->type == REDIR && check_is_builtin(node))
 	if (node->type == EXEC && check_is_builtin(node))
 	{
 		exec_node = (t_exec_node *)node;
@@ -73,17 +70,4 @@ void	run(t_node *node, t_data *data)
 		run_pipe_node(node, data);
 	else if (node->type == REDIR)
 		run_redir_node(node, data);
-}
-
-int	search_for_value(t_data *data, char *searched)
-{
-	int		x;
-		
-	x = -1;
-	while (data->env_vars[++x])
-	{
-		if (ft_strncmp(data->env_vars[x], searched, ft_strlen(searched)) == 0 )
-			return (x);
-	}
-	return (-1);
 }

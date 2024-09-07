@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 19:17:56 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:25:52 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_data
 	int		dollar_index;
 	int		stdin_cpy;
 	int		stdout_cpy;
+	t_node	*first_node;
 }				t_data;
 
 // --------------------- PARSING -----------------
@@ -160,6 +161,7 @@ int		init_env_tab(t_data *data, char **envp);
 int		copy_env_tab(t_data *data);
 void	handle_in_out(t_data *data);
 int		init_exec_node(t_exec_node *exec_node, char *command);
+int		search_row(t_data *data, char *str);
 
 // --------------------------------- SIGNALS -----------------------------------
 // signal.c
@@ -183,23 +185,17 @@ int		run_builtin(t_exec_node *exec_node, t_data *data);
 // echo
 // void	ft_echo(char *str, int out);
 void	ft_echo(char **args, int out);
+bool	is_there_n(char	**args);
 // cd_builtins.c
-int		ft_cd(char *str);
+int		ft_cd(char **args, t_data *data);
+void	actu_env(char *dir, char *var, t_data *data);
+int		go_home(t_data *data);
+int		switch_dir(char *path);
+char	*get_home(t_data *data);
 // pwd_builtins.c
 int		ft_pwd(void);
 // export_builtins.c
-// void 	ft_export_search(char **args, int line, int i, t_data *data);
-// int		ft_export(char **args, t_data *data);
-int	ft_export(char **args, t_data *data);
-char	*each_arg_export(char **args);
-char	**init_env_tab_export(char **envp);
-char	**create_export_tab(char **copy_for_print);
-void print_export(t_data *data);
-void 	my_swap(char **tab, char *temp, int a, int b);
-char 	**sort_alpha_export(char **tab);
-void	inside_while(char *searched, char **args, t_data *data, char *name);
-int	ft_export(char **args, t_data *data);
-
+int		ft_export(char **args, t_data *data);
 // int		ft_export(char *name, t_data *data);
 // shell level
 int		ft_update_shell_level(t_data *data);
@@ -217,7 +213,7 @@ char	*ft_env(t_data *data);
 int		is_input_exit(char *input, t_data *data);
 void	ft_exit_and_free(char **input_cpy, t_data *data);
 void	actualize_status_and_exit(char *status);
-void	ft_exit(char **args);
+void	ft_exit(char **args, t_data *data);
 
 // change shell level
 int		ft_update_shell_level(t_data *data);
@@ -254,7 +250,6 @@ int		handle_close(int fd);
 // -------------------- RUN UTILS ----------------
 
 int		is_line_delimiter(char *line, t_redir_node *redir_node);
-int		search_for_value(t_data *data, char *searched);
 void	handle_line(char *line, int file);
 // void    fill_struct(char *command, t_exec_node *exec_node);
 void	fork_before_exec(t_node *node, t_data *data);
