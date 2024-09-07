@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:21:32 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/07 18:25:04 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 19:34:09 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	create_env(char *name, t_data *data, int i)
 	}
 	new_env_vars[i] = strdup(name);
 	new_env_vars[i + 1] = NULL;
-	// my_free_tab(data->env_vars);
 	data->env_vars = new_env_vars;
 	return (1);
 }
@@ -57,46 +56,6 @@ char	*each_arg_export(char **args)
 	return (name);
 }
 
-int	ft_export(char **args, t_data *data)
-{
-	int		i;
-	int		j;
-	int 	y;
-	int		line;
-	char	*name;
-	char	*searched;
-
-	i = 1;
-	y = 0;
-	if (!args[1])
-		print_export(data);
-	while (args[i])
-	{
-		searched = ft_strdup(args[i]);
-		j = 0;
-		while (searched[j] != '=' && searched[j])
-			j++;
-		if (searched[j] == '=')
-			searched[j] = '\0';
-		line = search_for_value(data, searched);
-		free(searched);
-		if (line != -1)
-		{
-			free(data->env_vars[line]);
-			data->env_vars[line] = ft_strdup(args[i]);
-		}
-		else
-		{
-			y = 0;
-			name = each_arg_export(&args[i]);
-			while (data->env_vars[y] != NULL)
-				y++;
-			create_env(name, data, y);
-		}
-		i++;
-	}
-	return (1);
-}
 char	**init_env_tab_export(char **envp)
 {
 	char	**copy_of_env_export;
@@ -120,14 +79,14 @@ char	**init_env_tab_export(char **envp)
 
 char	**create_export_tab(char **copy_for_print)
 {
-	char *temp1;
-	char *temp2;
-	int i;
-	int j;
-	
+	char	*temp1;
+	char	*temp2;
+	int		i;
+	int		j;
+
 	i = 0;
 	while (copy_for_print[i])
-	{	
+	{
 		j = 0;
 		while (copy_for_print[i][j] != '=' && copy_for_print[i][j])
 			j++;
@@ -147,4 +106,21 @@ char	**create_export_tab(char **copy_for_print)
 	return (copy_for_print);
 }
 
+void	print_export(t_data *data)
+{
+	char	**copy_for_print;
+	char	**sorted_array;
+	int		i;
 
+	copy_for_print = init_env_tab_export(data->env_vars);
+	copy_for_print = create_export_tab(copy_for_print);
+	sorted_array = sort_alpha_export(copy_for_print);
+	i = 0;
+	while (copy_for_print[i])
+	{
+		printf("declare -x %s", copy_for_print[i]);
+		printf("\n");
+		i++;
+	}
+	my_free_tab(copy_for_print);
+}

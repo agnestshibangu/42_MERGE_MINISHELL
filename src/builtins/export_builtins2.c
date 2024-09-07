@@ -6,25 +6,24 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:00:12 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/07 18:25:07 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 19:37:01 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "../../minishell.h"
+#include "../../minishell.h"
 
-
-void 	my_swap(char **tab, char *temp, int a, int b)
+void	my_swap(char **tab, char *temp, int a, int b)
 {
 	temp = tab[a];
 	tab[a] = tab[b];
 	tab[b] = temp;
 }
 
-char 	**sort_alpha_export(char **tab)
+char	**sort_alpha_export(char **tab)
 {
 	int		a;
-	int 	b;
-	char 	*temp;
+	int		b;
+	char	*temp;
 
 	a = 0;
 	b = 0;
@@ -40,25 +39,53 @@ char 	**sort_alpha_export(char **tab)
 		}
 		a++;
 	}
-	return (tab);	
+	return (tab);
 }
 
-
-void print_export(t_data *data)
+void	inside_while(char *searched, char **args, t_data *data, char *name)
 {
-	char **copy_for_print;
-	char **sorted_array;
-	int i;
-	
-	copy_for_print = init_env_tab_export(data->env_vars);
-	copy_for_print = create_export_tab(copy_for_print);
-	sorted_array = sort_alpha_export(copy_for_print);
-	i = 0;
-	while (copy_for_print[i])
+	int		j;
+	int		line;
+	int		y;
+
+	searched = ft_strdup(*args);
+	j = 0;
+	while (searched[j] != '=' && searched[j])
+		j++;
+	if (searched[j] == '=')
+		searched[j] = '\0';
+	line = search_for_value(data, searched);
+	if (line != -1)
 	{
-		printf("declare -x %s", copy_for_print[i]);
-		printf("\n");
+		free(data->env_vars[line]);
+		data->env_vars[line] = ft_strdup(*args);
+	}
+	else
+	{
+		y = 0;
+		name = each_arg_export(args);
+		while (data->env_vars[y] != NULL)
+			y++;
+		create_env(name, data, y);
+	}
+}
+
+int	ft_export(char **args, t_data *data)
+{
+	int		i;
+	char	*name;
+	char	*searched;
+
+	name = NULL;
+	searched = NULL;
+	i = 1;
+	if (!args[1])
+		print_export(data);
+	while (args[i])
+	{
+		inside_while(searched, &args[i], data, name);
 		i++;
 	}
-	my_free_tab(copy_for_print);
+	free(searched);
+	return (1);
 }

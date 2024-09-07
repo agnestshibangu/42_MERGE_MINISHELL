@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/07 18:21:08 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 19:17:56 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ char	**create_export_tab(char **copy_for_print);
 void print_export(t_data *data);
 void 	my_swap(char **tab, char *temp, int a, int b);
 char 	**sort_alpha_export(char **tab);
+void	inside_while(char *searched, char **args, t_data *data, char *name);
+int	ft_export(char **args, t_data *data);
 
 // int		ft_export(char *name, t_data *data);
 // shell level
