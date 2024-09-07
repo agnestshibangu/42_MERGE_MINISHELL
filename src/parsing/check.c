@@ -6,7 +6,7 @@
 /*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:50:56 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 12:07:11 by thsion           ###   ########.fr       */
+/*   Updated: 2024/09/07 19:58:15 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*clean(char *new_input, char *input, t_data *data)
 		{
 			if (open_tok == 1 && (is_space(*input) || is_symbol(*input)))
 				new_input = new_arg(new_input, &open_tok, quote);
-			if (*input == '$')
+			if (*input == '$' && input[1])
 				new_input = convert_money(new_input, &input, data);
 			else
 				new_input = input_fixed(new_input, &input);

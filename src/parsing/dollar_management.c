@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:30:23 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 11:25:11 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 20:02:27 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*moneys_name(t_data *data, char **input)
 		data->dollar_len++;
 		tmp++;
 	}
-	data->dollar_name = malloc(sizeof (char) * data->dollar_len + 1);
+	data->dollar_name = malloc(sizeof(char) * data->dollar_len + 1);
 	if (!data->dollar_name)
 		return (NULL);
 	while (i < data->dollar_len)
@@ -92,6 +92,8 @@ char	*get_the_money(char *new_input, t_data *data)
 
 char	*convert_money(char *new_input, char **input, t_data *data)
 {
+	if ((*input)[1] == '"')
+		return (new_input);
 	(*input)++;
 	if (**input == '?')
 	{
