@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:42 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 15:42:30 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 09:47:33 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int	init_env_tab(t_data *data, char **envp)
 	data->env_vars = copy_of_env;
 	ft_update_shell_level(data);
 	handle_in_out(data);
-	printf("copy of env done !\n");
 	return (0);
 }

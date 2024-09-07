@@ -6,13 +6,33 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:36 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 15:14:38 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:23:34 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 int	g_status;
+
+// int is_only_spaces(char *input)
+// {
+//     int i;
+
+//     i = 0;
+//     if (input == NULL || input == ' ')
+// 	{
+// 		printf("i am here");	
+//         return (1); 
+// 	}
+		
+//     // while (input[i])
+//     // {
+//     //     if (input[i] == ' ') 
+//     //         return (0); 
+//     //     i++;
+//     // }
+//     return (1);
+// }
 
 void	show_prompt(t_data *data)
 {
@@ -23,8 +43,8 @@ void	show_prompt(t_data *data)
 	{
 		signal_handler();
 		input = readline("minishell$ ");
-		if (is_input_exit(input, data) == 0)
-			printf("EXIT\n");
+		if (input == NULL || input[0] == '\0')
+			;
 		if (check_empty_input(input, data))
 		{
 			add_history(input);

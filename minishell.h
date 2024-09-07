@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:12:53 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 14:22:40 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:20:21 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ typedef enum e_redir
 	APPEND,
 	IN_REDIR,
 	OUT_REDIR,
-}
-			t_redir;
+}			t_redir;
 
 typedef struct s_node
 {
@@ -88,9 +87,7 @@ typedef struct s_data
 	int		stdout_cpy;
 }				t_data;
 
-
-// ----------------------------------- PARSING -----------------------------------
-
+// --------------------- PARSING -----------------
 
 // parsing.c
 t_node	*starting_tree(char *input, t_data *data);
@@ -106,7 +103,7 @@ char	*input_fixed(char *new_input, char **input);
 
 // scanning.c
 int		getoken(char **start_scan, char *end_input, char **startoken,
-		char **endoken);
+			char **endoken);
 int		quoted_token(char **input, char **startoken, char **endoken);
 int		fill_type(char **input, int type, char *end_input);
 int		peek(char **start_scan, char *end_input, char *target);
@@ -115,7 +112,7 @@ int		peek(char **start_scan, char *end_input, char *target);
 t_node	*parse_execution(char **start_scan, char *end_input);
 t_node	*create_exec_node(void);
 void	fill_node(t_exec_node *exec_node, char *startoken, char *endoken,
-		int *i);
+			int *i);
 void	put_endline_exec(t_data *data, t_exec_node *exec_node);
 
 // parsing_utils_1.c
@@ -133,13 +130,14 @@ void	skip_space(char **input);
 char	*join_char(char *s1, char c);
 
 // parsing_utils_3.c
-void	quotes_checker(int *simple_quote, int *double_quotes, char *input, int i);
+void	quotes_checker(int *simple_quote, int *double_quotes,
+			char *input, int i);
 bool	wtfami(int count_quotes);
 
 // parsing_redirections.c
 t_node	*parse_redirection(t_node *node, char **start_scan, char *end_input);
 t_node	*create_redir_node(int token_type, t_node *cmd, char *start_file,
-		char *end_file);
+			char *end_file);
 t_node	*multiple_redir(t_node *cmd, t_redir_node *prev_redir);
 void	init_redirection(int token_type, t_redir_node	*redir_node);
 int		fill_redirection(char **str, int type);
@@ -158,8 +156,8 @@ bool	check_moneys_there(t_data *data);
 
 // ----------------------------------- INIT -----------------------------------
 // init.c
-int init_env_tab(t_data *data, char **envp);
-int copy_env_tab(t_data *data);
+int		init_env_tab(t_data *data, char **envp);
+int		copy_env_tab(t_data *data);
 void	handle_in_out(t_data *data);
 int		init_exec_node(t_exec_node *exec_node, char *command);
 
@@ -174,14 +172,14 @@ void	routine_child(int signal);
 
 // -------------------------------------- FREE --------------------------------
 // free.c
-int		free_minishell(t_data *data); // free the minishell at the very end
+int		free_minishell(t_data *data);
 void	free_nodes(t_node *node);
 
 // -------------------------------- BUILTINS -----------------------------------
 
 // run builtins
 //int run_builtin(char *command, t_data *data);
-int run_builtin(t_exec_node *exec_node, t_data *data);
+int		run_builtin(t_exec_node *exec_node, t_data *data);
 // echo
 // void	ft_echo(char *str, int out);
 void	ft_echo(char **args, int out);
@@ -190,78 +188,71 @@ int		ft_cd(char *str);
 // pwd_builtins.c
 int		ft_pwd(void);
 // export_builtins.c
-int ft_export(char **args, t_data *data);
+int		ft_export(char **args, t_data *data);
 // int		ft_export(char *name, t_data *data);
 // shell level
-int     ft_update_shell_level(t_data *data);
+int		ft_update_shell_level(t_data *data);
 // unset_builtins.c
 //int ft_unset(const char *str, t_data *data);
 
 void	unset_update_env(char *name, t_data *data);
-int ft_unset(char **args, t_data *data);
+int		ft_unset(char **args, t_data *data);
 // env_builtins.c
-int create_env(char *name,t_data *data, int i);
+int		create_env(char *name, t_data *data, int i);
 char	*ft_env(t_data *data);
 
 // exit_builtins.c
 // void 	ft_exit();
-int	is_input_exit(char *input, t_data *data);
+int		is_input_exit(char *input, t_data *data);
 void	ft_exit_and_free(char **input_cpy, t_data *data);
 void	actualize_status_and_exit(char *status);
 void	ft_exit(char **args);
 
-
-
 // change shell level
-int ft_update_shell_level(t_data *data);
+int		ft_update_shell_level(t_data *data);
 // void    run_exec(t_exec_node *exec_node, t_tabenv *tabenv)
 
-// ----------------------------------- EXEC -----------------------------------
-
-// t_node *create_exec_node(t_type type, bool is_builtin, const char *command);
+// --------------------- EXEC -----------------
 
 //int check_is_builtin(t_exec_node *exec_node);
-int check_is_builtin(t_node *node);
-void 	is_builtin(t_exec_node *exec_node, t_data *data);
+int		check_is_builtin(t_node *node);
+void	is_builtin(t_exec_node *exec_node, t_data *data);
 void	run_exec(t_exec_node *exec_node, t_data *data);
-void    fill_struct(char *command, t_exec_node *exec_node);
-void    run(t_node *node, t_data *data);
-void run_exec_node(t_node *node, t_data *data);
+void	fill_struct(char *command, t_exec_node *exec_node);
+void	run(t_node *node, t_data *data);
+void	run_exec_node(t_node *node, t_data *data);
 
-// ------------------------------------- PIPEX ----------------------------------
+// ------------------------- PIPEX ------------------
 
 // t_node *create_pipe_node(t_type type, t_node *left, t_node *right);
-void    run_node_left(t_pipe_node *pipe_node, int *fd, t_data *data);
-int	wait_for_process(pid_t pid1);
-void    run_node_right(t_pipe_node *pipe_node, int *fd, t_data *data);
-
+void	run_node_left(t_pipe_node *pipe_node, int *fd, t_data *data);
+int		wait_for_process(pid_t pid1);
+void	run_node_right(t_pipe_node *pipe_node, int *fd, t_data *data);
 int		ft_fork(void);
-void    run_pipe_node(t_node *node, t_data *data);
+void	run_pipe_node(t_node *node, t_data *data);
 
-// ------------------------------------- REDIR ----------------------------------
+// -------------------- REDIR --------------------
 
-
-// t_node *create_redir_node(t_type type, char *stop_word, int redir_type, t_node *node_cmd);
 void	reopen_stdin_stdout(int fd);
-int 	run_heredoc(t_redir_node *redir_node);
+int		run_heredoc(t_redir_node *redir_node);
 // void    run_heredoc(t_redir_node *redir_node);
-void    ft_heredoc(t_redir_node *redir_node);
+void	ft_heredoc(t_redir_node *redir_node);
 void	run_redir_node(t_node *node, t_data *data);
-int 	handle_close(int fd);
+int		handle_close(int fd);
 
-// ----------------------------------- RUN UTILS --------------------------------
+// -------------------- RUN UTILS ----------------
 
 int		is_line_delimiter(char *line, t_redir_node *redir_node);
 void	handle_line(char *line, int file);
 // void    fill_struct(char *command, t_exec_node *exec_node);
 void	fork_before_exec(t_node *node, t_data *data);
-void    before_run(t_node *node, t_data *data);
-void    run(t_node *node, t_data *data);
-void    dup_right(int *fd);
-void    dup_left(int *fd);
-int 	ft_error(char *msg, int exit_code);
+void	before_run(t_node *node, t_data *data);
+void	run(t_node *node, t_data *data);
+void	dup_right(int *fd);
+void	dup_left(int *fd);
+int		ft_error(char *msg, int exit_code);
 
-// ------------------------------------------------------------------------------
+// -------------------------------------------------
 
 /*				PIPEX & GNL				*/
 // pipex bonus
@@ -290,11 +281,11 @@ char	*my_extract(char *line);
 void	free_storage(char *storage);
 
 // free
-int     free_minishell(t_data *data); // free the minishell at the very end
+int		free_minishell(t_data *data);
 
 // signals
-void signal_handler(void);
-void new_routine(int signal);
+void	signal_handler(void);
+void	new_routine(int signal);
 void	heredoc_signal(void);
 void	heredoc_signal_handler(int signal);
 
@@ -367,7 +358,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
-
-
 
 #endif 

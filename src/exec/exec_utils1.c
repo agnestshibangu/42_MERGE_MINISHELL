@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:44:40 by thsion            #+#    #+#             */
-/*   Updated: 2024/09/05 14:38:07 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:38:58 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	fork_before_exec(t_node *node, t_data *data)
 	pid = 0;
 	pid = ft_fork();
 	signal(SIGINT, routine_child);
+
 	if (pid == 0)
 	{
 		run(node, data);
@@ -51,8 +52,9 @@ void	before_run(t_node *node, t_data *data)
 {
 	t_exec_node	*exec_node;
 
-	exec_node = (t_exec_node *)node;
-	if (node->type != REDIR && check_is_builtin(node))
+	//exec_node = (t_exec_node *)node;
+	//if (node->type == REDIR && check_is_builtin(node))
+	if (node->type == EXEC && check_is_builtin(node))
 	{
 		exec_node = (t_exec_node *)node;
 		run_builtin(exec_node, data);

@@ -6,7 +6,7 @@
 /*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 22:44:44 by agtshiba          #+#    #+#             */
-/*   Updated: 2024/09/05 14:32:51 by agtshiba         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:41:12 by agtshiba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	run_exec(t_exec_node *exec_node, t_data *data)
 	path = NULL;
 	argv = exec_node->args;
 	if (!argv || !argv[0])
-		exit(EXIT_FAILURE);
-	if (strchr(argv[0], '/') != NULL)
+		exit(EXIT_FAILURE);		
+	if (ft_strchr(argv[0], '/') != NULL)
 		run_path(argv, &path);
 	else
 		run_command(&path, argv, data);
@@ -85,3 +85,7 @@ void	run_exec_node(t_node *node, t_data *data)
 	else
 		run_exec(exec_node, data);
 }
+
+
+bfrfe (nimp) --- > ft_env
+gestion erreur --- > chose pas besoin detre free
