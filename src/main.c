@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agtshiba <agtshiba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:11:36 by thsion            #+#    #+#             */
 /*   Updated: 2024/09/07 20:08:07 by agtshiba         ###   ########.fr       */
@@ -29,15 +29,8 @@ void	show_prompt(t_data *data)
 		{
 			add_history(input);
 			final_node = starting_tree(input, data);
-			data->first_node = final_node;
-			if (!final_node)
-				free_nodes(final_node);
-			else
-			{
-				before_run(final_node, data);
-				free_nodes(final_node);
-				free(data->start_input);
-			}
+			before_run(final_node, data);
+			free_nodes(final_node);
 		}
 	}
 }
