@@ -19,8 +19,8 @@ char	*ft_env(t_data *data)
 	i = 0;
 	while (data->env_vars[i])
 	{
-		ft_putstr_fd(data->env_vars[i], 1);
-		ft_putchar_fd('\n', 1);
+		if (ft_strchr(data->env_vars[i], '='))
+			printf("%s\n", data->env_vars[i]);
 		i++;
 	}
 	return (NULL);
